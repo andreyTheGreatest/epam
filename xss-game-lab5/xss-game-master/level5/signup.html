@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Internal game scripts/styles, mostly boring stuff -->
+    <script src="https://xss-game.appspot.com/static/game-frame.js"></script>
+    <link rel="stylesheet" href="https://xss-game.appspot.com/static/game-frame-styles.css" />
+    <script src="https://unpkg.com/dompurify@1.0.10/dist/purify.min.js" integrity="sha384-rde2iD+4Po+9TlQo3k7zSYKn29zm1/22iCpWMA9QUzQqlB5+M4gpN5yQxqWvaMon" crossorigin="anonymous"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const targetLink = document.getElementById("target-link");
+        const sanitized = DOMPurify.sanitize(targetLink.outerHTML);
+        const testedValue = document.createElement('div');
+        testedValue.innerHTML = htmlString.trim();
+        if (testedValue.firstChild.href !== targetLink.href) {
+          targetLink.href = "";
+        }
+      });
+    </script>
+  </head>
+ 
+  <body id="level5">
+    <img src="https://xss-game.appspot.com/static/logos/level5.png" /><br><br>
+    <!-- We're ignoring the email, but the poor user will never know! -->
+    Enter email: <input id="reader-email" name="email" value="">
+ 
+    <br><br>
+    <a id="target-link" href="{{ next | safe }}">Next >></a>
+  </body>
+</html>
